@@ -1,0 +1,11 @@
+# Module de Contrôle d'Accès RFID
+[cite_start]Ce module est développé pour l'entreprise EPI-94 dans le cadre du projet de supervision[cite: 42, 44].
+
+## Matériel utilisé
+- [cite_start]Raspberry Pi 4 Model B [cite: 124]
+- [cite_start]Lecteur NFC ACR122U 
+
+## État actuel
+- Environnement Linux configuré.
+- Pilotes PCSC installés.
+- Test de détection : OK.
