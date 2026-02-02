@@ -9,3 +9,8 @@
 - Environnement Linux configuré.
 - Pilotes PCSC installés.
 - Test de détection : OK.
+## Resolution d'incidents
+### Probleme Accès refusé au lecteur via SSH (Polkit)
+**Symptôme :** Impossible de communiquer avec l'ACR122U lors d'une session à distance, malgré le bon fonctionnement de `pcsc_scan`.
+**Cause :** Les politiques de sécurité Debian (Polkit) restreignent l'accès au matériel PC/SC pour les sessions non locales.
+**Solution :** Création d'une règle Polkit personnalisée dans ( `/usr/share/polkit-1/rules.d/`) pour autoriser explicitement mon utilisateur.
