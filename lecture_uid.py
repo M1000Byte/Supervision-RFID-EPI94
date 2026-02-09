@@ -1,6 +1,8 @@
 from smartcard.System import readers
 from smartcard.util import toHexString
+from pylibftdi import BitBangDevice
 from datetime import datetime
+import requests
  # import csv (f.write fait la meme chose donc pas besoin sauf en cas de  manip complexe)
 import time 
 def enregistrer_acces(id_badge): 
@@ -29,6 +31,21 @@ def obtenir_uid():
     except Exception as e:
         return None
     return None
+def ouvrir_portail()   :
+    try:
+        with BitBangDevice() as dev:
+            dev.direction = 0xFF    
+    
+            print("Activation de la porte 8")
+            dev.port = 0x80  
+    
+            time.sleep(2)
+    
+            print("Fermeture...")
+            dev.port = 0x00
+
+    except Exception as e:
+        print(f"Erreur de communication avec le portail: {e}")          
 
 print('Lecture des badges en cours...')
 while True:
@@ -36,6 +53,7 @@ while True:
         uid = obtenir_uid()
         if uid:
             enregistrer_acces(uid)
+            ouvrir_portail()
             time.sleep(2)
     except Exception as e:
         pass
